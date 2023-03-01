@@ -9,6 +9,10 @@
     <p>Faction: {{ model.faction }}</p>
     <p>Type: {{ model.type }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'models_update' cat.id %}">Edit</a>
+    <a href="{% url 'models_delete' cat.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}

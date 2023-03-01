@@ -4,7 +4,7 @@
 <h1>Model List</h1>
 
 {% for model in models %}
-<a href="/models/{{ model.id }}">
+<a href="{% url 'detail' model.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ model.name }}</span>
