@@ -30,6 +30,6 @@ class ModelUpdate(UpdateView):
     model = Model
     fields = ['faction', 'type']
 
-class ModelUpdate(DeleteView):
+class ModelDelete(DeleteView):
     model = Model
     success_url = '/models'

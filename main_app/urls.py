@@ -9,5 +9,4 @@ urlpatterns = [
     path('models/create/', views.ModelCreate.as_view(), name='models_create'),
     path('models/<int:pk>/update', views.ModelUpdate.as_view(), name='models_update'),
     path('models/<int:pk>/delete', views.ModelDelete.as_view(), name='models_delete'),
-
 ]

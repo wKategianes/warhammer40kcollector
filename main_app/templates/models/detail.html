@@ -1,18 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Cat Details</h1>
+<h1>Model Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ model.name }}</span>
-    <p>Faction: {{ model.faction }}</p>
-    <p>Type: {{ model.type }}</p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ model.name }}</span>
+        <p>Faction: {{ model.faction }}</p>
+        <p>Type: {{ model.type }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'models_update' model.id %}">Edit</a>
+        <a href="{% url 'models_delete' model.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'models_update' cat.id %}">Edit</a>
-    <a href="{% url 'models_delete' cat.id %}">Delete</a>
+  <!-- New Markup Below -->
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Painted</th></tr>
+      </thead>
+      <tbody>
+        {% for painting in model.painting_set.all %}
+          <tr>
+            <td>{{painting.date}}</td>
+            <td>{{painting.get_painting_status_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
+  <!-- New Markup Above -->
 </div>
-
 {% endblock %}

@@ -17,3 +17,24 @@ def __str__(self):
 
 def get_absolute_url(self):
     return reverse('detail', kwargs={'model_id': self.id})
+
+PAINT = (
+    ('P', 'Primed'),
+    ('D', 'Detailed'),
+    ('C', 'Completed'),
+)
+
+class Painting(models.Model):
+    date = models.DateField('Painted Date')
+    painting_status = models.CharField(
+        max_length=1,
+        choices=PAINT,
+        default=PAINT[0][0]
+    )
+
+    # Create a model_id FK
+    model = models.ForeignKey(Model, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_painting_status_display()} on {self.date}"
+
