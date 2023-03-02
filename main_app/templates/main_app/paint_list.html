@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Paint List</h1>
+
+{% for paint in paint_list %}
+  <a href="{% url 'paints_detail' paint.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ paint.name }}</span>
+            <p>Color: {{ paint.color }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Model
+from django.views.generic import ListView, DetailView
+from .models import Model, Paint
 from .forms import PaintingForm
 
 
@@ -36,3 +37,21 @@ class ModelUpdate(UpdateView):
 class ModelDelete(DeleteView):
     model = Model
     success_url = '/models'
+
+class PaintList(ListView):
+  model = Paint
+
+class PaintDetail(DetailView):
+  model = Paint
+
+class PaintCreate(CreateView):
+  model = Paint
+  fields = '__all__'
+
+class PaintUpdate(UpdateView):
+  model = Paint
+  fields = ['name', 'color']
+
+class PaintDelete(DeleteView):
+  model = Paint
+  success_url = '/paints'
