@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Model
+from .forms import PaintingForm
 
 
 # Create your views here.
@@ -20,7 +21,9 @@ def models_index(request):
 
 def models_detail(request, model_id):
     model = Model.objects.get(id=model_id)
-    return render(request, 'models/detail.html', {'model': model})
+    # instantiate PaintingForm to be rendered in the template
+    painting_form = PaintingForm()
+    return render(request, 'models/detail.html', {'model': model, 'painting_form': painting_form})
 
 class ModelCreate(CreateView):
     model = Model
