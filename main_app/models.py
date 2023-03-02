@@ -1,11 +1,25 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
+
+# Create your models here.
+class Paint(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('paints_detail', kwargs={'pk': self.id})
 
 # Create your models here.
 class Model(models.Model):
     name = models.CharField(max_length=100)
     faction = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
+    # Create a M:M relationship with Paint
+    paints = models.ManyToManyField(Paint)
 
 # Changing this instance method
 # does nto impact the database, therefore
@@ -38,14 +52,3 @@ class Painting(models.Model):
 
 class Meta:
     ordering = ['-date']
-
-# Create your models here.
-class Paint(models.Model):
-  name = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
-
-  def __str__(self):
-    return self.name
-
-  def get_absolute_url(self):
-    return reverse('paints_detail', kwargs={'pk': self.id})

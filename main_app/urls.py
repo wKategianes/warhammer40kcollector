@@ -9,6 +9,7 @@ urlpatterns = [
     path('models/create/', views.ModelCreate.as_view(), name='models_create'),
     path('models/<int:pk>/update', views.ModelUpdate.as_view(), name='models_update'),
     path('models/<int:pk>/delete', views.ModelDelete.as_view(), name='models_delete'),
+    path('models/<int:model_id>/assoc_paint/<int:paint_id>', views.assoc_paint, name='assoc_paint'),
     path('paints/', views.PaintList.as_view(), name='paints_index'),
     path('paints/<int:pk>/', views.PaintDetail.as_view(), name='paints_detail'),
     path('paints/create/', views.PaintCreate.as_view(), name='paints_create'),
