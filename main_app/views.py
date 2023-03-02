@@ -64,6 +64,10 @@ class PaintDelete(DeleteView):
   model = Paint
   success_url = '/paints'
 
-def assoc_toy(request, model_id, paint_id):
+def assoc_paint(request, model_id, paint_id):
     Model.objects.get(id=model_id).paints.add(paint_id)
+    return redirect('detail', model_id=model_id)
+
+def d_assoc_paint(request, model_id, paint_id):
+    Model.objects.get(id=model_id).paints.remove(paint_id)
     return redirect('detail', model_id=model_id)

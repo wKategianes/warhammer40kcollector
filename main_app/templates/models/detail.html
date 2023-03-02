@@ -54,7 +54,13 @@
               A <span style="color: {{ paint.color }}">{{ paint.color }}</span> {{ paint.name }}
             </span>
           </div>
+          <div class="card-action">
+            <form action="{% url 'd_assoc_paint' model.id paint.id%}" method="DELETE">
+              {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
         </div>
+    </div>
       {% endfor %}
     {% else %}
       <h5>No Paints 🖌️</h5>
